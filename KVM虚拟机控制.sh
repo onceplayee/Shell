@@ -18,7 +18,7 @@ else
     # 检查系统中是否已安装libvirt软件包
     rpm -qa libvirt &>/dev/null
     # 如果上一条命令的退出状态码不为0，表示libvirt未安装
-    if [ $? -ne 0 ]; then
+    if [ $? -eq 0 ]; then
         # 提示用户是否要进行KVM虚拟化初始部署，并读取用户输入
         read -p "是否要进行KVM虚拟化初始部署(y/n)" choice
         # 如果用户输入为"y"，表示同意进行初始部署
