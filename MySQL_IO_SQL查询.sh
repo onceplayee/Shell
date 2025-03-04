@@ -5,9 +5,10 @@ if [ -z "$1" ];then
     exit 99
 fi
 
+STATE=$(mysql -uroot -pMqt3090786752! -e "show slave status\G" 2> /dev/null | grep -w "Slave_IO_Running:" | awk '{print $2}')
+
 case "$1" in
     IO)
-STATE=$(mysql -uroot -pMqt3090786752! -e "show slave status\G" 2> /dev/null | grep -w "Slave_IO_Running:" | awk '{print $2}')
 
 if [ "${STATE}" == "Yes" ];then
      echo "正常"
@@ -16,7 +17,6 @@ else
 fi
 ;;
      SQL)
-STATE=$(mysql -uroot -pMqt3090786752! -e "show slave status\G" 2> /dev/null | grep -w "Slave_SQL_Running:" | awk '{print $2}')
 
 if [ "${STATE}" == "Yes" ];then
     echo "正常"
